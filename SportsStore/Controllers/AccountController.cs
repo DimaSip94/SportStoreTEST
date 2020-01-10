@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace SportsStore.Controllers
 {
-    [Authorize]
     public class AccountController:Controller
     {
         private UserManager<IdentityUser> userManager;
@@ -57,6 +56,35 @@ namespace SportsStore.Controllers
         {
             await signInManager.SignOutAsync();
             return Redirect(returnUrl);
+        }
+
+        [HttpGet]
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                IdentityUser user = new IdentityUser { Email = model.Email, UserName = model.Email};
+                var result = await signInManager.UserManager.CreateAsync(user, model.Password);
+                if (result.Succeeded)
+                {
+                    await signInManager.SignInAsync(user, false);
+                    return RedirectToAction("Index", "Home");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError(string.Empty, error.Description);
+                    }
+                }
+            }
+            return View(model);
         }
 
         [HttpGet]
