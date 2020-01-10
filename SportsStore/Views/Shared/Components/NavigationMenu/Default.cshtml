@@ -2,8 +2,7 @@
 <a class="btn btn-block btn-secondary"
    asp-action="List"
    asp-controller="Product"
-   asp-route-category="" 
-   >
+   asp-route-category="">
     Home
 </a>
 @foreach (var m in Model)
@@ -14,5 +13,18 @@
        asp-route-category="@m"
        asp-route-productPage="1">
         @m
+    </a>
+}
+@if (User.Identity.IsAuthenticated)
+{
+    <a class="btn btn-block btn-secondary"
+       asp-action="Index"
+       asp-controller="Admin">
+        Products
+    </a>
+    <a class="btn btn-block btn-secondary"
+       asp-action="Index"
+       asp-controller="Users">
+        Users
     </a>
 }
