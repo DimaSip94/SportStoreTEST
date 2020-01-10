@@ -1,0 +1,26 @@
+﻿@model IEnumerable<System.Security.Claims.Claim>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="bg-primary m-1 р-1 text-white"><h4>Claims</h4></div>
+<table class="table table-sm table-bordered">
+    <tr>
+        <th>Subject</th>
+        <th>Issuer</th>
+        <th>Type</th>
+        <th>Value</th>
+    </tr>
+    @foreach (var claim in Model)
+    {
+        <tr>
+            <td>@claim.Subject</td>
+            <td>@claim.Issuer</td>
+            <td identity-claim-type="@claim.Type"></td>
+            <td>@claim.Value</td>
+        </tr>
+    }
+</table>
+
+
+

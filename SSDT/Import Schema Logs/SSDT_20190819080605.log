@@ -1,0 +1,74 @@
+19.08.2019 23:06:05	This log contains information about the import schema operation into project 'SSDT' on computer 'LAPTOP-I0KLMA05' by user 'DimaL'.
+19.08.2019 23:06:05	Import of database schema has started.
+19.08.2019 23:06:13	Gathering database options
+19.08.2019 23:06:13	Gathering users
+19.08.2019 23:06:13	Gathering roles
+19.08.2019 23:06:13	Gathering application roles
+19.08.2019 23:06:13	Gathering role memberships
+19.08.2019 23:06:13	Gathering filegroups
+19.08.2019 23:06:13	Gathering full-text catalogs
+19.08.2019 23:06:13	Gathering assemblies
+19.08.2019 23:06:13	Gathering certificates
+19.08.2019 23:06:13	Gathering asymmetric keys
+19.08.2019 23:06:13	Gathering symmetric keys
+19.08.2019 23:06:13	Gathering encrypted symmetric keys
+19.08.2019 23:06:13	Gathering schemas
+19.08.2019 23:06:20	Gathering XML schema collections
+19.08.2019 23:06:20	Gathering user-defined data types
+19.08.2019 23:06:20	Gathering user-defined types
+19.08.2019 23:06:20	Gathering table types
+19.08.2019 23:06:20	Gathering unique keys for table types
+19.08.2019 23:06:20	Gathering primary keys for table types
+19.08.2019 23:06:20	Gathering indexes for table types
+19.08.2019 23:06:20	Gathering check constraints for table types
+19.08.2019 23:06:20	Gathering default constraints for table types
+19.08.2019 23:06:20	Gathering partition functions
+19.08.2019 23:06:20	Gathering partition schemes
+19.08.2019 23:06:20	Gathering functions
+19.08.2019 23:06:20	Gathering encrypted functions
+19.08.2019 23:06:21	Gathering aggregates
+19.08.2019 23:06:21	Gathering procedures
+19.08.2019 23:06:21	Gathering encrypted procedures
+19.08.2019 23:06:21	Gathering tables
+19.08.2019 23:06:21	Gathering primary keys
+19.08.2019 23:06:21	Gathering unique constraints
+19.08.2019 23:06:21	Gathering foreign keys
+19.08.2019 23:06:21	Gathering default constraints
+19.08.2019 23:06:21	Gathering check constraints
+19.08.2019 23:06:21	Gathering views
+19.08.2019 23:06:21	Gathering encrypted views
+19.08.2019 23:06:21	Gathering indexes
+19.08.2019 23:06:21	Gathering statistics
+19.08.2019 23:06:21	Gathering full-text index stoplists
+19.08.2019 23:06:21	Gathering search property lists
+19.08.2019 23:06:21	Gathering search properties
+19.08.2019 23:06:21	Gathering full-text indexes
+19.08.2019 23:06:21	Gathering column store indexes
+19.08.2019 23:06:21	Gathering spatial indexes
+19.08.2019 23:06:21	Gathering XML indexes
+19.08.2019 23:06:21	Gathering Selective XML indexes
+19.08.2019 23:06:21	Gathering encrypted triggers
+19.08.2019 23:06:21	Gathering triggers
+19.08.2019 23:06:21	Gathering encrypted and clr ddl triggers
+19.08.2019 23:06:21	Gathering ddl triggers
+19.08.2019 23:06:21	Gathering synonyms
+19.08.2019 23:06:21	Gathering defaults
+19.08.2019 23:06:21	Gathering data constraint uddt bindings
+19.08.2019 23:06:21	Gathering rules
+19.08.2019 23:06:21	Gathering data constraint uddt bindings
+19.08.2019 23:06:21	Gathering message types
+19.08.2019 23:06:21	Gathering queues
+19.08.2019 23:06:21	Gathering contracts
+19.08.2019 23:06:21	Gathering services
+19.08.2019 23:06:21	Gathering event notifications
+19.08.2019 23:06:21	Gathering remote service bindings
+19.08.2019 23:06:21	Gathering broker priorities
+19.08.2019 23:06:21	Gathering signatures
+19.08.2019 23:06:21	Gathering data compression options
+19.08.2019 23:06:21	Gathering sequence types
+19.08.2019 23:06:21	Gathering extended properties
+19.08.2019 23:06:24	Scanning project for duplicate elements
+19.08.2019 23:06:24	Finished duplicate element processing
+19.08.2019 23:06:24	Finished importing database.
+19.08.2019 23:06:24	A summary of the import was saved to the following location: E:\JFF\SportsStore\SSDT\Import Schema Logs\SSDT_20190819080605.log
+19.08.2019 23:06:24	Click Finish to continue...

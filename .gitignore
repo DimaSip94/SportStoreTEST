@@ -1,0 +1,8 @@
+bin
+obj
+node_modules
+.vs
+*.dbmdl
+*.png
+*.jfm
+/SportsStore/Infrastructure/EmailService.cs

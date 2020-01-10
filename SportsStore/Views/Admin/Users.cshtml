@@ -1,0 +1,25 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@model IEnumerable<IdentityUser>
+@{
+    ViewData["Title"] = "Users";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th>Email</th>
+            <th>Username</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var us in Model)
+        {
+        <tr>
+            <td>@us.Email</td>
+            <td>@us.UserName</td>
+        </tr>
+        }
+    </tbody>
+</table>
+

@@ -1,0 +1,39 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link rel="stylesheet" asp-href-include="/lib/bootstrap/dist/**/*.min.css" asp-href-exclude="**/*-reboot*,**/*-grid*" />
+    <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <title>Sports Store</title>
+    @RenderSection("styles", false)
+</head>
+<body>
+    <div class="row m-1 p-1">
+        <a class="col navbar-brand" href="#">Sports Store</a>
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="col-2">
+                <a class="btn btn-sm btn-primary" asp-action="Login" asp-controller="Account">Log In</a>
+            </div>
+        }
+        <div class="col-4 text-right">
+            @await Component.InvokeAsync("CartSummary")
+        </div>
+    </div>
+    <div class="row m-1 p-1">
+        <div id="categories" class="col-3">
+            @await Component.InvokeAsync("NavigationMenu")
+        </div>
+        <div class="col-9">
+            @RenderBody()
+        </div>
+    </div>
+    @RenderSection("scripts", false)
+</body>
+</html>
