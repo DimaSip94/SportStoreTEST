@@ -1,0 +1,2 @@
+# SportStoreTEST
+.net core test
