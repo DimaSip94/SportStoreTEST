@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -11,13 +12,16 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using React.AspNet;
 using SportsStore.Infrastructure;
 using SportsStore.Managers;
 using SportsStore.Models;
 using SportsStore.Repositories;
+using StackExchange.Profiling.Storage;
 
 namespace SportsStore
 {
@@ -35,6 +39,14 @@ namespace SportsStore
         public void ConfigureServices(IServiceCollection services)
         {
             string connection = Configuration.GetConnectionString("DefaultConnection");
+
+            services.AddMiniProfiler(options => {
+                options.RouteBasePath = "/profiler";
+                (options.Storage as MemoryCacheStorage).CacheDuration = TimeSpan.FromMinutes(60);
+                options.SqlFormatter = new StackExchange.Profiling.SqlFormatters.InlineFormatter();
+                options.ResultsAuthorize = request => !Program.DisableProfilingResults;
+            });
+
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(connection));
 
             services.AddIdentity<IdentityUser, IdentityRole>()
@@ -66,12 +78,13 @@ namespace SportsStore
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider)
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, IServiceProvider serviceProvider, ILoggerFactory loggerFactory, IMemoryCache cache)
         {                          
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseMiniProfiler();
             app.UseReact(config => { });
             app.UseStatusCodePages();
             app.UseStaticFiles();

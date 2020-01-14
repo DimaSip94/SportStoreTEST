@@ -17,7 +17,7 @@ namespace SportsStore.Managers
         {
             total = 0;
             List<Order> res = new List<Order>();
-            using (var conn = new SqlConnection(_connectionString))
+            using (var conn = Connection)
             {
                 DynamicParameters _params = new DynamicParameters();
                 _params.Add("page", page);
@@ -48,7 +48,7 @@ namespace SportsStore.Managers
             msg = "";
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                using (var conn = Connection)
                 {
                     DynamicParameters _params = new DynamicParameters();
                     _params.Add("@Name", order.Name);
@@ -80,7 +80,7 @@ namespace SportsStore.Managers
 
         public void MarkShipped(int orderID, bool shipped)
         {
-            using (var conn = new SqlConnection(_connectionString))
+            using (var conn = Connection)
             {
                 DynamicParameters _params = new DynamicParameters();
                 _params.Add("@orderID", orderID);

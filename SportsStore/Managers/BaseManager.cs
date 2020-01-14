@@ -1,8 +1,10 @@
 ﻿using Dapper;
 using SportsStore.Repositories;
+using StackExchange.Profiling;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -18,6 +20,15 @@ namespace SportsStore.Managers
             _connectionString = connectionString;
             _webRootPath = webRootPath;
         }
+
+        protected DbConnection Connection
+        {
+            get
+            {
+                DbConnection connection = new System.Data.SqlClient.SqlConnection(_connectionString);
+                return new StackExchange.Profiling.Data.ProfiledDbConnection(connection, MiniProfiler.Current);
+            }
+        } 
 
         protected object TransformArrayParametersToTableValuedParameters(object parameters)
         {

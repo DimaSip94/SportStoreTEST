@@ -18,7 +18,7 @@ namespace SportsStore.Managers
         {
             total = 0;
             List<Product> products = new List<Product>();
-            using (var conn = new SqlConnection(_connectionString))
+            using (var conn = Connection)
             {
                 DynamicParameters _params = new DynamicParameters();
                 _params.Add("page", page);
@@ -35,7 +35,7 @@ namespace SportsStore.Managers
         public List<string> GetCategories()
         {
             List<string> res = new List<string>();
-            using (var conn = new SqlConnection(_connectionString))
+            using (var conn = Connection)
             {
                 conn.Open();
                 res = conn.Query<string>("spst_GetCategories", null, commandType: CommandType.StoredProcedure).ToList();
@@ -48,7 +48,7 @@ namespace SportsStore.Managers
             Product p = new Product();
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                using (var conn = Connection)
                 {
                     DynamicParameters _params = new DynamicParameters();
                     _params.Add("productID", id);
@@ -70,7 +70,7 @@ namespace SportsStore.Managers
             BaseResult result = new BaseResult();
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                using (var conn = Connection)
                 {
                     DynamicParameters _params = new DynamicParameters();
                     _params.Add("productID", model.ProductID);
@@ -103,7 +103,7 @@ namespace SportsStore.Managers
             BaseResult result = new BaseResult();
             try
             {
-                using (var conn = new SqlConnection(_connectionString))
+                using (var conn = Connection)
                 {
                     DynamicParameters _params = new DynamicParameters();
                     _params.Add("productID", productID);
