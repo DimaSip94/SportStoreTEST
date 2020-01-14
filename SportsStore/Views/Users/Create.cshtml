@@ -1,6 +1,7 @@
 ﻿@model CreateUserViewModel
 @{
     ViewBag.Title = "Add user";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 <form asp-action="Create" asp-controller="Users">
     <div asp-validation-summary="All" class="text-danger"></div>

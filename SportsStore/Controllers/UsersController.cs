@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace SportsStore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class UsersController : Controller
     {
         private UserManager<IdentityUser> userManager;

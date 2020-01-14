@@ -16,7 +16,7 @@ using SportsStore.Models.ViewModels;
 
 namespace SportsStore.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "admin")]
     public class AdminController : Controller
     {
         private IEFProductManager repo;
