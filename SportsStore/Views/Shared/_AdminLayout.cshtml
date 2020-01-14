@@ -10,18 +10,40 @@
     <meta name="viewport" content="width=device-width" />
     <link rel="stylesheet" asp-href-include="/lib/bootstrap/dist/**/*.min.css" asp-href-exclude="**/*-reboot*,**/*-grid*" />
     <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
+    <script asp-src-include="/lib/jquery/dist/**/*.min.js"></script>
+    <script asp-src-include="/lib/bootstrap/dist/**/*.min.js"></script>
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-    <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>*@
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>*@
     <title>@ViewBag.Title</title>
 </head>
 <body class="m-1 p-1">
     <div class="bg-info p-2 row">
-        <div class="col">
+        <div class="@(User.Identity.IsAuthenticated?"col-6":"col")">
             <h4>@ViewBag.Title</h4>
         </div>
         @if (User.Identity.IsAuthenticated)
         {
+            <div class="col-4">
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <ul class="navbar-nav mr-auto">
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-action="Index" asp-controller="Admin">Cabinet</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-action="Index" asp-controller="Users">Users</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-action="Index" asp-controller="Roles">Roles</a>
+                            </li>
+                            <li class="nav-item active">
+                                <a class="nav-link" asp-action="UserList" asp-controller="Roles">User Roles</a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
             <div class="col-2">
                 <a class="btn btn-sm btn-primary" asp-action="LogOut" asp-controller="Account">Log Out</a>
             </div>
