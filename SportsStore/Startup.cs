@@ -71,6 +71,7 @@ namespace SportsStore
             });
             IMapper mapper = mappingConfig.CreateMapper();
             services.AddSingleton(mapper);
+            services.AddSignalR();
             services.AddMvc();
             services.AddMemoryCache();
             services.AddSession();
@@ -90,6 +91,9 @@ namespace SportsStore
             app.UseStaticFiles();
             app.UseSession();
             app.UseAuthentication();
+            app.UseSignalR(conf => {
+                conf.MapHub<ChatHub>("/chat");
+            });
             app.UseMvc(routes=>{
 
                 routes.MapRoute(
