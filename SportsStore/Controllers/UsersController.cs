@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SportsStore.Infrastructure;
 using SportsStore.Models.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,10 +12,10 @@ using System.Threading.Tasks;
 namespace SportsStore.Controllers
 {
     [Authorize(Roles = "admin")]
-    public class UsersController : Controller
+    public class UsersController : BaseController
     {
         private UserManager<IdentityUser> userManager;
-        public UsersController(UserManager<IdentityUser> userManager)
+        public UsersController(UserManager<IdentityUser> userManager, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.userManager = userManager;
         }

@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Infrastructure;
@@ -11,11 +12,11 @@ using System.Threading.Tasks;
 
 namespace SportsStore.Controllers
 {
-    public class AccountController:Controller
+    public class AccountController : BaseController
     {
         private UserManager<IdentityUser> userManager;
         private SignInManager<IdentityUser> signInManager;
-        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager)
+        public AccountController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;

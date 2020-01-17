@@ -2,16 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SportsStore.Infrastructure;
 using SportsStore.Models;
 
 namespace SportsStore.Controllers
 {
-    public class React_ProductController : Controller
+    public class React_ProductController : BaseController
     {
         private IQueueRequests queueRequests;
-        public React_ProductController(IQueueRequests queueRequests)
+        public React_ProductController(IQueueRequests queueRequests, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.queueRequests = queueRequests;
         }

@@ -3,18 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using SportsStore.Infrastructure;
 using SportsStore.Managers;
 using SportsStore.Models;
 
 namespace SportsStore.Controllers
 {
-    public class OrderController : Controller
+    public class OrderController : BaseController
     {
         private IOrderManager orderManager;
         private Cart cart;
 
-        public OrderController(IOrderManager orderManager, Cart cart)
+        public OrderController(IOrderManager orderManager, Cart cart, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.orderManager = orderManager;
             this.cart = cart;

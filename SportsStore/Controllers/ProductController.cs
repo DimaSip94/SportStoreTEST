@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using SportsStore.Infrastructure;
 using SportsStore.Managers;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
@@ -12,20 +13,17 @@ using SportsStore.Repositories;
 
 namespace SportsStore.Controllers
 {
-    public class ProductController : Controller
+    public class ProductController : BaseController
     {
         private IProductRepository productRepository;
         private IEFProductManager eFProductManager;
-        private IHttpContextAccessor httpContextAccessor;
         private int pageSize = 5;
 
-        public ProductController(IProductRepository productRepository, IEFProductManager eFProductManager, IHttpContextAccessor httpContextAccessor)
+        public ProductController(IProductRepository productRepository, IEFProductManager eFProductManager, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.productRepository = productRepository;
             this.eFProductManager = eFProductManager;
-            this.httpContextAccessor = httpContextAccessor;
-            Program.DisableProfilingResults = httpContextAccessor.HttpContext.User.Identity.IsAuthenticated && httpContextAccessor.HttpContext.User.IsInRole("admin") ? false : true;
-        }
+        }         
 
         public ViewResult List(string category, int productPage = 1)
         {

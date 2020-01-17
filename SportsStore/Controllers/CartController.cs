@@ -7,15 +7,16 @@ using SportsStore.Managers;
 using SportsStore.Models;
 using SportsStore.Infrastructure;
 using SportsStore.Models.ViewModels;
+using Microsoft.AspNetCore.Http;
 
 namespace SportsStore.Controllers
 {
-    public class CartController : Controller
+    public class CartController : BaseController
     {
         private IEFProductManager repository;
         private Cart cart;
 
-        public CartController(IEFProductManager _repository, Cart _cart)
+        public CartController(IEFProductManager _repository, Cart _cart, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             repository = _repository;
             cart = _cart;

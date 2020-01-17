@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
+using SportsStore.Infrastructure;
 using SportsStore.Managers;
 using SportsStore.Models;
 using SportsStore.Models.ViewModels;
@@ -17,7 +18,7 @@ using SportsStore.Models.ViewModels;
 namespace SportsStore.Controllers
 {
     [Authorize(Roles = "admin")]
-    public class AdminController : Controller
+    public class AdminController : BaseController
     {
         private IEFProductManager repo;
         private UserManager<IdentityUser> userManager;
@@ -29,7 +30,7 @@ namespace SportsStore.Controllers
         private string uploadsFile = "";
         private string tempFile = "";
 
-        public AdminController(IEFProductManager repo, UserManager<IdentityUser> userManager, IConfiguration configuration, IFileManager fileManager, IHostingEnvironment env, IMapper mapper)
+        public AdminController(IEFProductManager repo, UserManager<IdentityUser> userManager, IConfiguration configuration, IFileManager fileManager, IHostingEnvironment env, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
         {
             this.repo = repo;
             this.userManager = userManager;
