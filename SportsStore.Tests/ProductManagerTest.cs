@@ -1,4 +1,5 @@
-﻿using SportsStore.Managers;
+﻿using Microsoft.Extensions.Configuration;
+using SportsStore.Managers;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -8,11 +9,14 @@ namespace SportsStore.Tests
 {
     public class ProductManagerTest
     {
-        private readonly string connection = "Server=LAPTOP-I0KLMA05\\SQLEXPRESS;Database=sportsStore;User Id=dima;Password=123456;MultipleActiveResultSets=true";
         [Fact]
         public void Can_GetProduct()
         {
-            IEFProductManager eFProductManager = new EFProductManager(connection,"");
+            var config = new ConfigurationBuilder()
+                .AddJsonFile("client-secrets.json")
+                .Build();
+
+            IEFProductManager eFProductManager = new EFProductManager(config["DbConnection"], "");
             var productSucsses = eFProductManager.GetProduct(3);
             Assert.Equal(3, productSucsses.ProductID);
 
