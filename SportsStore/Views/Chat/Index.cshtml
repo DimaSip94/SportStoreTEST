@@ -3,14 +3,23 @@
     ViewData["Title"] = "Chat Test";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-
+@section styles{ 
+<style>
+    .hide{
+        display:none;
+    }
+    .block{
+        display:block;
+    }
+</style>
+}
 <div id="chatreact"></div>
 @section scripts
 {
     <script asp-src-include="~/signalr/dist/browser/signalr.min.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react/16.11.0/umd/react.development.js"></script>
     <script crossorigin src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"></script>
-    <script asp-src-include="~/react_modules/test/sampleChat.jsx"></script>
+    <script asp-src-include="~/react_modules/simpleChat/sampleChat.jsx"></script>
 }
 
 

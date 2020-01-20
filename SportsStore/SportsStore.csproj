@@ -22,6 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\react_modules\test\" />
     <Folder Include="wwwroot\uploads\" />
     <Folder Include="wwwroot\files_temp\" />
   </ItemGroup>
