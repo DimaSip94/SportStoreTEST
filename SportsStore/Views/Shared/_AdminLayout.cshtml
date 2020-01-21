@@ -12,6 +12,8 @@
     <link rel="stylesheet" asp-href-include="/lib/fontawesome/css/*.css" />
     <script asp-src-include="/lib/jquery/dist/**/*.min.js"></script>
     <script asp-src-include="/lib/bootstrap/dist/**/*.min.js"></script>
+    <script asp-src-include="~/signalr/dist/browser/signalr.min.js"></script>
+    <script asp-src-include="~/scripts/admin/signalrAdmin.js"></script>
     @*<script src="~/lib/jquery/dist/jquery.min.js"></script>
         <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
         <script src="~/lib/jquery-validation-unobtrusive/dist/jquery.validate.unobtrusive.min.js"></script>*@
@@ -60,5 +62,10 @@
         <div class="alert alert-danger">@TempData["error"]</div>
     }
     @RenderBody()
+    <script>
+        $(document).ready(function () {
+            signalrAdmin.init();
+        });
+    </script>
 </body>
 </html>

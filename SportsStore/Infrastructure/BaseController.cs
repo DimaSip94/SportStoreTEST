@@ -10,7 +10,7 @@ namespace SportsStore.Infrastructure
 {
     public class BaseController : Controller
     {
-        private IHttpContextAccessor httpContextAccessor;
+        protected IHttpContextAccessor httpContextAccessor;
 
         public BaseController(IHttpContextAccessor httpContextAccessor)
         {

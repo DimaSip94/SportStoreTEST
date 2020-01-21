@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.SignalR;
 using Microsoft.Extensions.Configuration;
 using SportsStore.Infrastructure;
 using SportsStore.Managers;
@@ -26,11 +27,12 @@ namespace SportsStore.Controllers
         private IFileManager fileManager;
         private IHostingEnvironment env;
         private IMapper mapper;
+        private IHubContext<ChatHub> hubContext;
 
         private string uploadsFile = "";
         private string tempFile = "";
 
-        public AdminController(IEFProductManager repo, UserManager<IdentityUser> userManager, IConfiguration configuration, IFileManager fileManager, IHostingEnvironment env, IMapper mapper, IHttpContextAccessor httpContextAccessor) : base(httpContextAccessor)
+        public AdminController(IEFProductManager repo, UserManager<IdentityUser> userManager, IConfiguration configuration, IFileManager fileManager, IHostingEnvironment env, IMapper mapper, IHttpContextAccessor httpContextAccessor, IHubContext<ChatHub> hubContext) : base(httpContextAccessor)
         {
             this.repo = repo;
             this.userManager = userManager;
@@ -38,6 +40,7 @@ namespace SportsStore.Controllers
             this.fileManager = fileManager;
             this.env = env;
             this.mapper = mapper;
+            this.hubContext = hubContext;
 
             uploadsFile = configuration.GetSection("FileSystem").GetSection("Uploads").Value;
             tempFile = configuration.GetSection("FileSystem").GetSection("Temp").Value;
@@ -79,10 +82,24 @@ namespace SportsStore.Controllers
                     string savePath = await fileManager.SaveFileAsync(model.LogoFile, filePath);
                     model.LogoPath = string.IsNullOrEmpty(savePath) ? "" : absPath;
                 }
+                bool isCreate = true;
                 Product product = mapper.Map<ProductViewModel, Product>(model);
+                if (product.ProductID > 0)
+                {
+                    isCreate = false;
+                }
                 var res = repo.SaveProduct(product);
                 if (res.IsSuccess)
                 {
+                    if (isCreate)
+                    {
+                        string cookieHubConnectionID = httpContextAccessor.HttpContext.Request.Cookies.ContainsKey("hubConnectionId") ?
+                            httpContextAccessor.HttpContext.Request.Cookies["hubConnectionId"] : "";
+                        if (!string.IsNullOrEmpty(cookieHubConnectionID))
+                        {
+                            await hubContext.Clients.AllExcept(cookieHubConnectionID).SendAsync("CreateProductNotify", $"Добавлен новый товар {product.Name}");
+                        }
+                    }
                     TempData["message"] = $"{model.Name} has been saved";
                     return RedirectToAction("Index");
                 }
