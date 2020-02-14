@@ -85,10 +85,10 @@ namespace SportsStore
             {
                 app.UseDeveloperExceptionPage();
             }
-            app.UseMiniProfiler();
             app.UseReact(config => { });
             app.UseStatusCodePages();
             app.UseStaticFiles();
+            app.UseMiniProfiler();
             app.UseSession();
             app.UseAuthentication();
             app.UseSignalR(conf => {
